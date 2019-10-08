@@ -4,7 +4,7 @@ import urllib.parse
 import random
 import json
 
-TIME_SLOT = 1.1
+TIME_SLOT = 5
 
 def translate(transSentence, fromLan, toLan):
     appid = '20190929000338202'

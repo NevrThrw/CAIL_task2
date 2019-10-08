@@ -35,7 +35,6 @@ def train(data_path, model_path):  # 训练模型
     model.build_vocab(train_text)
     model.train(train_text, total_examples=model.corpus_count, epochs=model.epochs)
     model.save(model_path)
-    # model.delete_temporary_training_data(keep_doctags_vectors=True, keep_inference=True)
 
 
 def main():
