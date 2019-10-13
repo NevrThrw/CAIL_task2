@@ -14,7 +14,7 @@ data_input = {1: "divorce/data.txt", 2: "labor/data.txt", 3: "loan/data.txt"}
 models = {1: divorce_model, 2: loan_model, 3: labor_model}
 label_size = 20
 test_ratio = 0.3
-punction = "！？。＂＃＄％＆＇（）＊＋，－／：；＜＝＞＠［＼］＾＿｀｛｜｝～｟｠｢｣､、〃》「」『』【】〔〕〖〗〘〙〚〛〜〝〞〟〰〾〿–—‘’‛“”„‟…‧﹏."
+punction = "！？。＂＃＄％＆＇.（）＊＋，－／：；＜＝＞＠［＼］＾＿｀｛｜｝～｟｠｢｣､、〃》「」『』【】〔〕〖〗〘〙〚〛〜〝〞〟〰〾〿–—‘’‛“”„‟…‧﹏."
 
 
 def line_processing(line):  # 提取每行数据的文本内容
@@ -23,7 +23,8 @@ def line_processing(line):  # 提取每行数据的文本内容
     sentence = re.sub(r'[{}]'.format(punction), ' ', sentence).split(' ')
     sent = []
     for sub_sentence in sentence:
-        sent.extend(list(jieba.cut(sub_sentence)))
+        if sub_sentence!='':
+            sent.extend(list(jieba.cut(sub_sentence)))
     return line[0], sent, line[2]
 
 
@@ -84,6 +85,6 @@ def predict(text, model_type):  # 预测数据的标签
         res.append(predictSingleLabel(x, data_type[model_type], i)[0])
     return res
 
-#
-# if __name__ == "__main__":
-#     beginTrain()
+
+if __name__ == "__main__":
+    beginTrain()

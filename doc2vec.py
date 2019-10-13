@@ -16,7 +16,8 @@ def line_processing(line):  # 提取每行数据的文本内容
     sentence = re.sub(r'[{}]'.format(punction), ' ', sentence).split(' ')
     sent = []
     for sub_sentence in sentence:
-        sent.extend(list(jieba.cut(sub_sentence)))
+        if sub_sentence != '':
+            sent.extend(list(jieba.cut(sub_sentence)))
     return line[0], sent, line[2]
 
 
@@ -39,6 +40,7 @@ def train(data_path, model_path):  # 训练模型
 
 def main():
     for i in range(1, 4):
+        print(i)
         train(data_input[i], doc2vec_model_path[i])
 
 
